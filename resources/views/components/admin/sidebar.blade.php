@@ -30,11 +30,11 @@
                     </a>
                 </li>
 
-                <li class="dropdown {{ Route::is('admin.sub-category.index') ? 'active' : '' }}">
+                {{-- <li class="dropdown {{ Route::is('admin.sub-category.index') ? 'active' : '' }}">
                     <a href="{{ route('admin.sub-category.index') }}" class="nav-link">
                         <i class="fas fa-users"></i><span>Sub-Category</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="dropdown {{ Route::is('admin.tag.index') ? 'active' : '' }}">
                     <a href="{{ route('admin.tag.index') }}" class="nav-link">
