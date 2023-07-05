@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="{{ asset('admin/css/app.min.css') }}">
         <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('plugins/datatables/datatables.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('plugins/pretty-checkbox/pretty-checkbox.min.css') }}">
 
         <link href="{{ asset('admin/css/app.css') }}" rel="stylesheet" />
         <script src="{{ asset('admin/js/app.js') }}"></script>
