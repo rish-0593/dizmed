@@ -2,13 +2,75 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Category;
+use App\Actions\Datatable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Admin\CategoryResource;
 
 class CategoryController extends Controller
 {
-    public function index() : View {
+    public function getQuery(Request $request)
+    {
+        return Category::query();
+    }
+
+    public function datatable(Request $request)
+    {
+        $list = (new Datatable($request))->setQuery(function () use ($request) {
+            return $this->getQuery($request);
+        })->setFilterQuery(function($q) use ($request) {
+            return $q;
+        })->process(function($q, $skip, $take){
+            return CategoryResource::collection(
+                $q->orderByDesc('id')
+                ->skip($skip)
+                ->take($take)
+                ->get()
+            );
+        });
+
+        return $list;
+    }
+
+    public function index(Request $request)
+    {
+        if($request->ajax()){
+            return $this->datatable($request);
+        }
+
         return view('admin.category.index');
+    }
+
+    public function addOrUpdate(Request $request)
+    {
+        $data = Category::updateOrCreate(
+            [
+                'id' => $request->id ?? null,
+            ],
+            [
+                'name' => $request->name
+            ]
+        );
+
+        return $data;
+    }
+
+    public function trash(Request $request)
+    {
+        Category::destroy($request->id);
+
+        return true;
+    }
+
+    public function updateStatus(Request $request)
+    {
+        Category::find($request->id)->update([
+            'status' => DB::raw('NOT status')
+        ]);
+
+        return true;
     }
 }
