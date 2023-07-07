@@ -73,6 +73,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
 
     Route::prefix('product')->name('product.')->group(function () {
         Route::match(['get', 'post'], '/', [Admin\ProductController::class, 'index'])->name('index');
+        Route::get('add', [Admin\ProductController::class, 'add'])->name('add');
         Route::post('add-or-update', [Admin\ProductController::class, 'addOrUpdate'])->name('add.or.update');
         Route::post('update-status', [Admin\ProductController::class, 'updateStatus'])->name('update.status');
         Route::post('trash', [Admin\ProductController::class, 'trash'])->name('trash');

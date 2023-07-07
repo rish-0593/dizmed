@@ -11,4 +11,8 @@ class ProductController extends Controller
     public function index() : View {
         return view('admin.product.index');
     }
+
+    function add(Request $request) {
+        return view('admin.product.partials._product');
+    }
 }

@@ -10,7 +10,7 @@
                             <h4>{{ __('Products') }}</h4>
                             <div class="card-header-form">
                                 <div class="input-group-btn">
-                                    <button type="button" class="btn btn-primary" data-modal-target="#addOrUpdate">Add</button>
+                                    <a href="{{ route('admin.product.add') }}" class="btn btn-primary" target="_blank">Add</a>
                                 </div>
                             </div>
                         </div>
