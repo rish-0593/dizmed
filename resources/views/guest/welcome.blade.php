@@ -120,30 +120,32 @@
     </div>
 
     {{-- Category --}}
-    <div class="categories-area pb-70">
-        <div class="custom-container">
-            <div class="section-title-1 mb-40">
-                <h2>Shop by categories</h2>
-            </div>
+    @if ($categories->count() > 0)
+        <div class="categories-area pb-70">
+            <div class="custom-container">
+                <div class="section-title-1 mb-40">
+                    <h2>Shop by categories</h2>
+                </div>
 
-            <div class="row row-cols-lg-5 row-cols-md-3 row-cols-1 g-3">
-                @foreach ($categories as $category)
-                    <div class="col">
-                        <div class="product-plr-1">
-                            <div class="categories-wrap">
-                                {{-- <div class="categories-img categories-img-zoom">
+                <div class="row row-cols-lg-5 row-cols-md-3 row-cols-1 g-3">
+                    @foreach ($categories as $category)
+                        <div class="col">
+                            <div class="product-plr-1">
+                                <div class="categories-wrap">
+                                    {{-- <div class="categories-img categories-img-zoom">
                                     <a href="shop.html"><img src="img/product/categorie-1.jpg" alt=""></a>
                                 </div> --}}
-                                <div class="categories-content text-center">
-                                    <h3><a href="{{ route('guest.shop') }}">{{ $category->name }}</a></h3>
+                                    <div class="categories-content text-center">
+                                        <h3><a href="{{ route('guest.shop') }}">{{ $category->name }}</a></h3>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 
     <div class="banner-area pb-40">
         <div class="custom-container">
@@ -257,23 +259,25 @@
     </div>
 
     {{-- Brand --}}
-    <div class="brand-logo-area pb-35">
-        <div class="custom-container">
-            <div class="section-title-1 wow tmFadeInUp mb-30">
-                <h2>Shop by brands</h2>
-            </div>
-            <div class="row align-items-center wow tmFadeInUp">
-                @foreach ($brands as $brand)
-                    <div class="col-lg-2 col-md-4 col-6 col-sm-4">
-                        <div class="single-brand-logo mb-30">
-                            {{-- <a href="shop.html"><img src="img/brand-logo/brand-logo-1.png" alt=""></a> --}}
-                            <h3><a href="{{ route('guest.shop') }}">{{ $brand->name }}</a></h3>
+    @if ($brands->count() > 0)
+        <div class="brand-logo-area pb-35">
+            <div class="custom-container">
+                <div class="section-title-1 wow tmFadeInUp mb-30">
+                    <h2>Shop by brands</h2>
+                </div>
+                <div class="row align-items-center wow tmFadeInUp">
+                    @foreach ($brands as $brand)
+                        <div class="col-lg-2 col-md-4 col-6 col-sm-4">
+                            <div class="single-brand-logo mb-30">
+                                {{-- <a href="shop.html"><img src="img/brand-logo/brand-logo-1.png" alt=""></a> --}}
+                                <h3><a href="{{ route('guest.shop') }}">{{ $brand->name }}</a></h3>
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 
     <div class="contact-area bg-gray-2">
         <div class="custom-container">
