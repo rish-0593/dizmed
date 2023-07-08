@@ -12,21 +12,20 @@
             ajax: {
                 url: datatable_url,
                 type: "POST",
-                data: function ( d ) {
+                data: function(d) {
                     d._token = "{{ csrf_token() }}";
                 },
             },
-            columns: [
-                {
-                    name: 'name',
-                    data: function ( d ) {
-                        return `<span class="__name">${d.name}</span>`;
+            columns: [{
+                    name: 'title',
+                    data: function(d) {
+                        return `<span class="__title">${d.title}</span>`;
                     },
                     orderable: false
                 },
                 {
                     name: 'status',
-                    data: function ( d ) {
+                    data: function(d) {
                         return `
                             <span class="__status">
                                 <div class="pretty p-switch p-fill">
@@ -42,7 +41,7 @@
                 },
                 {
                     name: 'action',
-                    data: function ( d ) {
+                    data: function(d) {
                         let html = `
                             <a href="javascript:void(0);" data-modal-target="#addOrUpdate" data-modal-id="${ d.id }">
                                 <i class="fas fa-edit" style="font-size: 15px;"></i>

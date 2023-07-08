@@ -10,12 +10,13 @@
                             <h4>{{ __('Products') }}</h4>
                             <div class="card-header-form">
                                 <div class="input-group-btn">
-                                    <a href="{{ route('admin.product.add') }}" class="btn btn-primary" target="_blank">Add</a>
+                                    <a href="{{ route('admin.product.add') }}" class="btn btn-primary"
+                                        target="_blank">Add</a>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            @includeIf("admin.product.filters")
+                            @includeIf('admin.product.filters')
 
                             <div class="table-responsive">
                                 <table id="datatable" class="table table-striped display" style="width:100%">
@@ -36,7 +37,7 @@
     </div>
 
     <x-slot name="modals">
-        @includeIf('admin.product.modals', ['add_or_update_url' => route('admin.product.add.or.update')])
+        @includeIf('admin.product.modals')
     </x-slot>
 
     <x-slot name="scripts">

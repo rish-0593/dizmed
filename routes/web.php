@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Guest;
 use App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -80,9 +81,10 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     });
 });
 
-
-Route::get('/', function () {
-    return view('welcome');
+Route::name('guest.')->group(function () {
+    Route::get('/', [Guest\WelcomeController::class, 'welcome'])->name('welcome');
+    Route::get('shop', [Guest\ShopController::class, 'shop'])->name('shop');
+    Route::get('product/{slug}', [Guest\ProductController::class, 'product'])->name('product');
 });
 
 Route::middleware('auth')->group(function () {
