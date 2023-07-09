@@ -1,5 +1,27 @@
 <x-admin-layout>
     <x-slot name="title">{{ __('Add Product') }}</x-slot>
+    <x-slot name="styles">
+        <style>
+            em {
+                position: absolute;
+                z-index: 9;
+                font-family: sans-serif;
+                font-weight: 100;
+                font-size: 14px !important;
+                color: #ff6363;
+                /* left: 20px; */
+            }
+
+            /* .select em {
+                margin-top: 68px;
+            }
+
+            .filepond em {
+                margin-top: 77px;
+                left: 6px;
+            } */
+        </style>
+    </x-slot>
 
     <div class="main-content">
         <section class="section">
@@ -12,20 +34,21 @@
                         <div class="card-body">
                             <div class="row justify-content-md-center">
                                 <div class="col-8">
-                                    <form action="{{ route('admin.product.add.or.update') }}" method="POST">
+                                    <form id="form-module" action="{{ route('admin.product.add.or.update') }}"
+                                        method="POST">
                                         @csrf
                                         <div class="form-group">
-                                            <label>Title</label>
+                                            <label>Title :</label>
                                             <input type="text" class="form-control" name="title" required>
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Description</label>
-                                            <input type="text" class="form-control" name="description" required>
+                                            <label>Description :</label>
+                                            <textarea class="form-control" name="description" rows="10"></textarea>
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Brand</label>
+                                            <label>Brand :</label>
                                             <select class="form-control form-control-lg" name="brand_id" required>
                                                 @foreach ($brands as $brand)
                                                     <option value="{{ $brand->id }}">{{ $brand->name }}</option>
@@ -34,7 +57,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Category</label>
+                                            <label>Category :</label>
                                             <select class="form-control form-control-lg" name="category_id" required>
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -42,8 +65,8 @@
                                             </select>
                                         </div>
 
-                                        <div class="form-group">
-                                            <label>Tags</label>
+                                        <div class="form-group select">
+                                            <label>Tags :</label>
                                             <select class="form-control select2" multiple="" name="tag_id[]"
                                                 required>
                                                 @foreach ($tags as $tag)
@@ -53,11 +76,11 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label>Attributes</label>
+                                            <label>Attributes :</label>
                                             <div class="repeater">
                                                 <div data-repeater-list="attribute">
                                                     <div data-repeater-item>
-                                                        <div class="row justify-content-md-center mb-3">
+                                                        <div class="row justify-content-md-center pt-1 mb-4">
                                                             <div class="col">
                                                                 <select name="attribute_type" class="form-control"
                                                                     required>
@@ -74,9 +97,9 @@
                                                                     class="form-control" required />
                                                             </div>
 
-                                                            <div class="col-1">
+                                                            <div class="col-2">
                                                                 <button type="button" data-repeater-delete
-                                                                    class="btn btn-primary">Delete</button>
+                                                                    class="btn btn-danger">Delete</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -86,8 +109,14 @@
                                             </div>
                                         </div>
 
+                                        <div class="form-group filepond mb-5">
+                                            <label>Images :</label>
+                                            <input type="file" name="product_image[]" multiple
+                                                data-max-file-size="1MB" required>
+                                        </div>
+
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary col-2">Add Product</button>
+                                            <button type="submit" class="btn btn-success col-2">Add Product</button>
                                         </div>
                                     </form>
                                 </div>
@@ -100,21 +129,7 @@
     </div>
 
     <x-slot name="scripts">
-        <script>
-            $(document).ready(function() {
-                $('.repeater').repeater({
-                    // (Required if there is a nested repeater)
-                    // Specify the configuration of the nested repeaters.
-                    // Nested configuration follows the same format as the base configuration,
-                    // supporting options "defaultValues", "show", "hide", etc.
-                    // Nested repeaters additionally require a "selector" field.
-                    repeaters: [{
-                        // (Required)
-                        // Specify the jQuery selector for this nested repeater
-                        selector: '.inner-repeater'
-                    }]
-                });
-            });
-        </script>
+        @includeIf('admin.product.partials.scripts')
+        @includeIf('filepond.script')
     </x-slot>
 </x-admin-layout>

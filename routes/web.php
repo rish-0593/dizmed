@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Guest;
 use App\Http\Controllers\Admin;
+use App\Http\Controllers\Guest;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -86,6 +87,11 @@ Route::name('guest.')->group(function () {
     Route::get('shop', [Guest\ShopController::class, 'shop'])->name('shop');
     Route::get('product/{slug}', [Guest\ProductController::class, 'product'])->name('product');
 });
+
+
+// file upload system
+Route::post('file/process', [FileController::class, 'process'])->name('file.process');
+Route::post('file/revert', [FileController::class, 'revert'])->name('file.revert');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

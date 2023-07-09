@@ -7,12 +7,15 @@ use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Attribute;
+use Illuminate\Http\File;
 use App\Actions\Datatable;
+use App\Models\ProductTag;
+use App\Models\FileContent;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\Admin\ProductResource;
-use App\Models\ProductTag;
 
 class ProductController extends Controller
 {
@@ -80,6 +83,21 @@ class ProductController extends Controller
         }
 
         $product->attributes()->attach($attributes);
+
+        // add images
+        foreach($request->product_image ?? [] as $image){
+            $fileLocation = Storage::putFile(
+                'products',
+                new File(Storage::path($image)),
+                'public'
+            );
+
+            FileContent::create([
+                'model_id' => $product->id,
+                'model_type' => Product::class,
+                'content' => $fileLocation,
+            ]);
+        }
 
         return redirect()->back();
     }

@@ -8,14 +8,14 @@
 
     <title>{{ $title ?? '' }}</title>
 
+    <link href="{{ asset('admin/css/app.css') }}" rel="stylesheet" />
+    <script src="{{ asset('admin/js/app.js') }}"></script>
+
     <link rel="stylesheet" href="{{ asset('admin/css/app.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/datatables/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/pretty-checkbox/pretty-checkbox.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/select2/select2.min.css') }}">
-
-    <link href="{{ asset('admin/css/app.css') }}" rel="stylesheet" />
-    <script src="{{ asset('admin/js/app.js') }}"></script>
 
     {{ $styles ?? '' }}
 </head>
@@ -49,6 +49,8 @@
     <script src="{{ asset('plugins/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('plugins/select2/select2.full.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery-repeater/jquery.repeater.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-validation/jquery.validate.min.js') }}"></script>
+
 
     <script type="text/javascript">
         $.ajaxSetup({

@@ -47,10 +47,12 @@
                                     <div class="single-product-wrap mb-50">
                                         <div class="product-img-action-wrap mb-10">
                                             <div class="product-img product-img-zoom">
-                                                <a href="product-details.html">
-                                                    <img class="default-img" src="assets/images/product/product-4.jpg"
+                                                <a href="{{ route('guest.product', [$product->slug]) }}">
+                                                    <img class="default-img"
+                                                        src="{{ asset('storage/' . ($product->images[0]->content ?? '')) }}"
                                                         alt="">
-                                                    <img class="hover-img" src="assets/images/product/product-4-2.jpg"
+                                                    <img class="hover-img"
+                                                        src="{{ asset('storage/' . ($product->images[0]->content ?? '')) }}"
                                                         alt="">
                                                 </a>
                                             </div>
@@ -62,8 +64,10 @@
                                             <div class="product-category">
                                                 <a href="">{{ $product->category->name }}</a>
                                             </div>
-                                            <h2><a
-                                                    href="{{ route('guest.product', [$product->slug]) }}">{{ $product->title }}</a>
+                                            <h2>
+                                                <a href="{{ route('guest.product', [$product->slug]) }}">
+                                                    {{ $product->title }}
+                                                </a>
                                             </h2>
                                         </div>
                                     </div>

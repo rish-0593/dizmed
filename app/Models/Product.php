@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
@@ -50,5 +51,10 @@ class Product extends Model
     public function attributes()
     {
         return $this->belongsToMany(Attribute::class)->using(ProductAttribute::class)->withPivot('value');
+    }
+
+    public function images(): MorphMany
+    {
+        return $this->morphMany(FileContent::class, 'model');
     }
 }

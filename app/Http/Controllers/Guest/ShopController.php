@@ -16,7 +16,7 @@ class ShopController extends Controller
         $categories = Category::active()->get();
         $brands = Brand::active()->get();
 
-        $products = Product::with('brand', 'category')->get();
+        $products = Product::with('brand', 'category', 'images')->get();
 
         return view('guest.shop', compact('categories', 'brands', 'products'));
     }
