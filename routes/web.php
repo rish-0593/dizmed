@@ -84,7 +84,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
 
 Route::name('guest.')->group(function () {
     Route::get('/', [Guest\WelcomeController::class, 'welcome'])->name('welcome');
-    Route::get('shop', [Guest\ShopController::class, 'shop'])->name('shop');
+    Route::get('products', [Guest\ShopController::class, 'shop'])->name('shop');
     Route::get('product/{slug}', [Guest\ProductController::class, 'product'])->name('product');
 });
 

@@ -18,7 +18,7 @@
                 <nav>
                     <ul class="mobile-menu">
                         <li><a href="{{ route('guest.welcome') }}">Home</a></li>
-                        <li><a href="{{ route('guest.shop') }}">Product</a></li>
+                        <li><a href="{{ route('guest.shop') }}">Products</a></li>
                         <li><a href="{{ route('guest.welcome') }}">About Us</a></li>
                         <li><a href="{{ route('guest.welcome') }}">Contact Us</a></li>
                     </ul>
